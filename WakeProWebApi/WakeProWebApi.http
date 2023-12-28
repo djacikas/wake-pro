@@ -1,0 +1,6 @@
+@WakeProWebApi_HostAddress = http://localhost:5194
+
+GET {{WakeProWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

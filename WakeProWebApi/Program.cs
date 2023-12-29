@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using WakeProWebApi.Contexts;
+
 namespace WakeProWebApi
 {
    public class Program
@@ -10,6 +13,10 @@ namespace WakeProWebApi
          // Add services to the container.
 
          builder.Services.AddControllers();
+
+         builder.Services.AddDbContext<AppDbContext>(options =>
+             options.UseSqlServer(builder.Configuration["ConnectionStrings:DBConnection"]));
+
          // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
          builder.Services.AddEndpointsApiExplorer();
          builder.Services.AddSwaggerGen();

@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WakeProApi.Models;
 using WakeProApi.Services;
 
 namespace WakeProApi.Controllers
@@ -16,20 +14,33 @@ namespace WakeProApi.Controllers
          _contentClient = contentClient;
       }
 
-      [HttpGet("image/{id}")]
-      public async Task<string> GetImageById(string id)
+      [HttpGet("images/{id}")]
+      public async Task<IActionResult> GetImageById(string id)
       {
          var response = await _contentClient.GetAssetById(id);
-         
-         return response;
+
+         if (response.IsSuccessStatusCode)
+         {
+            var stream = await response.Content.ReadAsStreamAsync();
+            return new FileStreamResult(stream, "image/jpeg");
+         }
+
+         return StatusCode((int)response.StatusCode);
       }
 
-      [HttpGet("video/{id}")]
-      public async Task<string> GetVideoById(string id)
+      [HttpGet("videos/{id}")]
+      public async Task<IActionResult> GetVideoById(string id)
       {
          var response = await _contentClient.GetAssetById(id);
 
-         return response;
+         if (response.IsSuccessStatusCode)
+         {
+            var stream = await response.Content.ReadAsStreamAsync();
+            return new FileStreamResult(stream, "video/mp4");
+         }
+
+         return StatusCode((int)response.StatusCode);
+
       }
    }
 }

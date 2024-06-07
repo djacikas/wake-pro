@@ -6,6 +6,6 @@ namespace WakeProApi.Services
    public interface IAssetsClient
    {
       [Get("/assets/{id}")]
-      Task<string> GetAssetById([AliasAs("id")] string id);
+      Task<HttpResponseMessage> GetAssetById([AliasAs("id")] string id);
    }
 }

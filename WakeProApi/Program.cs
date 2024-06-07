@@ -2,8 +2,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Refit;
 using Swashbuckle.AspNetCore.Filters;
 using WakeProApi.Data;
+using WakeProApi.Services;
 
 namespace WakeProApi
 {
@@ -36,6 +40,31 @@ namespace WakeProApi
 
          builder.Services.AddIdentityApiEndpoints<IdentityUser>()
             .AddEntityFrameworkStores<UsersDbContext>();
+
+
+         var baseUrl = builder.Configuration.GetRequiredSection("ContentApi").GetValue<string>("BaseUrl");
+
+         if (string.IsNullOrEmpty(baseUrl))
+         {
+            throw new Exception("BaseUrl is null or empty");
+         }
+
+         builder.Services.AddRefitClient<ITricksAPI>(
+            new RefitSettings
+            {
+               ContentSerializer = new NewtonsoftJsonContentSerializer(
+                  new JsonSerializerSettings
+                  {
+                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                     NullValueHandling = NullValueHandling.Include,
+                  })
+            })
+            .ConfigureHttpClient(c =>
+            {
+               c.BaseAddress = new Uri(baseUrl);
+               c.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            });
 
          var app = builder.Build();
 

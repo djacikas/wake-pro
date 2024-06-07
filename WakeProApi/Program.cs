@@ -49,7 +49,7 @@ namespace WakeProApi
             throw new Exception("BaseUrl is null or empty");
          }
 
-         builder.Services.AddRefitClient<ITricksAPI>(
+         builder.Services.AddRefitClient<IContentClient>(
             new RefitSettings
             {
                ContentSerializer = new NewtonsoftJsonContentSerializer(

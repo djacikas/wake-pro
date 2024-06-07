@@ -9,19 +9,36 @@ namespace WakeProApi.Controllers
    [Route("[controller]")]
    public class TricksController : ControllerBase
    {
-      private readonly ITricksAPI _tricksAPI;
+      private readonly IContentClient _contentClient;
 
-      public TricksController(ITricksAPI tricksAPI)
+      public TricksController(IContentClient contentClient)
       {
-         _tricksAPI = tricksAPI;
+         _contentClient = contentClient;
       }
 
-      [HttpGet(Name = "GetTricks")/*, Authorize*/]
-      public Task<TricksList> Get()
+      [HttpGet/*, Authorize*/]
+      public async Task<IEnumerable<Trick>> GetTricks()
       {
-         var response = _tricksAPI.GetTricks();
+         var response = await _contentClient.GetTricks();
 
-         return response;
+         return response.Data;
+      }
+
+      [HttpGet("id/{trickId}")]
+      public async Task<Trick> GetTrickById(int trickId)
+      {
+         //var response = _tricksAPI.GetTrickById(trickId).ConfigureAwait(false).GetAwaiter().GetResult();
+         var response = await _contentClient.GetTrickById(trickId);
+         
+         return response.Data;
+      }
+
+      [HttpGet("name/{trickName}")]
+      public async Task<IEnumerable<Trick>> GetTricksByName(string trickName)
+      {
+         var response = await _contentClient.GetTricksByName(trickName);
+
+         return response.Data;
       }
    }
 }

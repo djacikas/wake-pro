@@ -29,13 +29,13 @@ namespace WakeProApi
          });
 
 
-         builder.Services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+         builder.Services.AddDbContext<UsersDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Users")));
 
          builder.Services.AddAuthorization();
 
          builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-            .AddEntityFrameworkStores<DataContext>();
+            .AddEntityFrameworkStores<UsersDbContext>();
 
          var app = builder.Build();
 

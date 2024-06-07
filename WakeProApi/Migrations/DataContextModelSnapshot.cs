@@ -10,7 +10,7 @@ using WakeProApi.Data;
 
 namespace WakeProApi.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(UsersDbContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

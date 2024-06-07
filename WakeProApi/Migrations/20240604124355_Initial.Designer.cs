@@ -11,7 +11,7 @@ using WakeProApi.Data;
 
 namespace WakeProApi.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(UsersDbContext))]
     [Migration("20240604124355_Initial")]
     partial class Initial
     {

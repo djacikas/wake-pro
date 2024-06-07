@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WakeProApi.Data
 {
-   public class DataContext : IdentityDbContext
+   public class UsersDbContext : IdentityDbContext
    {
-      public DataContext(DbContextOptions<DataContext> options) : base(options)
+      public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
       {
 
       }

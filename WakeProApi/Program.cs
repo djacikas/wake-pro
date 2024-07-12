@@ -68,6 +68,9 @@ namespace WakeProApi
 
          var app = builder.Build();
 
+         // Log the environment to verify it's set correctly
+         Console.WriteLine($"Environment: {app.Environment.EnvironmentName}");
+
          // Configure the HTTP request pipeline.
          if (app.Environment.IsDevelopment())
          {

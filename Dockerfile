@@ -3,12 +3,18 @@
 # Build and run the project (run from solution directory):
 # Create image: docker build -t wakeproapi .
 # Run image: docker run -d --name wakeproapi -p 8080:8080 wakeproapi
+#
+# docker build -t wakeproapi-dev .
+# docker run -d --name wakeproapi-dev -p 8080:8080 wakeproapi-dev
+# 
+#
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
+ENV ASPNETCORE_ENVIRONMENT Development
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release

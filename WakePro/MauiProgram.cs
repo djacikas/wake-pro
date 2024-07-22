@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System.Reflection;
+using WakePro.ViewModels;
+using WakePro.Views;
 
 namespace WakePro
 {
@@ -16,8 +20,18 @@ namespace WakePro
            });
 
 #if DEBUG
-   		builder.Logging.AddDebug();
+         builder.Logging.AddDebug();
 #endif
+
+         using var stream = Assembly.GetExecutingAssembly()
+            .GetManifestResourceStream("WakePro.appsettings.json");
+         var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
+         builder.Configuration.AddConfiguration(config);
+
+         builder.Services.AddSingleton<LoginPage>();
+         builder.Services.AddSingleton<HomePage>();
+
+         builder.Services.AddSingleton<LoginPageViewModel>();
 
          return builder.Build();
       }

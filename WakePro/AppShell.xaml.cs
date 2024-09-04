@@ -1,4 +1,6 @@
-﻿namespace WakePro
+﻿using WakePro.Views;
+
+namespace WakePro
 {
    public partial class AppShell : Shell
    {

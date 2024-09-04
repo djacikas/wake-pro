@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WakePro.Views.TricksPage"
+             Title="Tricks Page">
+
+   <ContentPage.ToolbarItems>
+      <ToolbarItem Text="Back"
+                     Command="{Binding BackCommand}" />
+   </ContentPage.ToolbarItems>
+
+   <VerticalStackLayout>
+      <Label 
+            Text="Test hardcoded"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+      <Label 
+            Text="{Binding Test}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+      <Label 
+            Text="{Binding TrickLevel}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+   </VerticalStackLayout>
+</ContentPage>

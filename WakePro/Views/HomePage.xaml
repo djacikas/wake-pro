@@ -3,10 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WakePro.Views.HomePage"
              Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
+   <VerticalStackLayout>
+      <Label 
+            Text="Learn Wake Tricks!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+      <Label 
+            Text="Choose group:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+      <Button 
+            Text="Basic"
+            Command="{Binding NavigateToBasicTricksCommand}" />
+      <Button 
+            Text="Intermediate"
+            Command="{Binding NavigateToIntermediateTricksCommand}" />  
+      <Button 
+            Text="Advanced"
+            Command="{Binding NavigateToAdvancedTricksCommand}" />
+   </VerticalStackLayout>
 </ContentPage>

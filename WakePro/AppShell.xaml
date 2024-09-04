@@ -16,5 +16,8 @@
    <FlyoutItem Route="HomePage" FlyoutDisplayOptions="AsMultipleItems">
       <ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage}"/>
    </FlyoutItem>
+   <FlyoutItem Route="TricksPage" FlyoutDisplayOptions="AsMultipleItems">
+      <ShellContent Title="Tricks" ContentTemplate="{DataTemplate views:TricksPage}"/>
+   </FlyoutItem>
    
 </Shell>

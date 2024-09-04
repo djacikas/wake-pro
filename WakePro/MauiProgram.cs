@@ -32,6 +32,7 @@ namespace WakePro
          builder.Services.AddSingleton<HomePage>();
 
          builder.Services.AddSingleton<LoginPageViewModel>();
+         builder.Services.AddSingleton<HomePageViewModel>();
 
          return builder.Build();
       }
